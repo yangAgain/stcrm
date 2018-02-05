@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//src/main/java/st/core/model/BaseModel.java=UTF-8
+encoding//src/main/java/st/core/pager/Pager.java=UTF-8
+encoding//src/main/java/st/core/servlet/ImageServlet.java=UTF-8
+encoding//src/main/java/st/core/session/HtmlUtil.java=UTF-8
+encoding//src/main/java/st/core/session/JSONUtil.java=UTF-8
+encoding//src/main/java/st/core/session/SessionUtils.java=UTF-8
+encoding//src/main/java/st/core/tool/Constant.java=UTF-8
+encoding//src/main/java/st/core/tool/ExcelEntity.java=UTF-8
+encoding//src/main/java/st/core/tool/ExcelExporter.java=UTF-8
+encoding//src/main/java/st/core/tool/ExcelUtils.java=UTF-8
+encoding//src/main/java/st/core/tool/FormatCalendar.java=UTF-8
+encoding//src/main/java/st/core/tool/FormatEmpty.java=UTF-8
+encoding//src/main/java/st/core/tool/FormatMD5.java=UTF-8
+encoding//src/main/java/st/core/tool/FormatMath.java=UTF-8
+encoding//src/main/resources/prop.properties=UTF-8

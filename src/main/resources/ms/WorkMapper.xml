@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>                                                                    
+<!DOCTYPE mapper                                                                                          
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"                                                             
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.crm.mapper.WorkMapper">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="st.crm.model.WorkModel">
+		<result column="id" property="id" />
+		<result column="studentid" property="studentid" />
+		<result column="assignmentid" property="assignmentid" />
+		<result column="oneself_score" property="oneselfSorce" />
+		<result column="oneself_grade" property="oneselfGrade" />
+		<result column="teacher_score" property="teacherSorce" />
+		<result column="teacher_grade" property="teacherGrade" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,studentid,assignmentid,oneself_score,teacher_score,teacher_grade,oneself_grade
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="studentid != null and studentid != ''">
+				and studentid = #{studentid}
+			</if>
+			<if test="assignmentid != null and assignmentid != ''">
+				and assignmentid = #{assignmentid}
+			</if>
+			<if test="oneselfSorce != null and oneselfSorce != ''">
+				and oneself_score = #{oneselfSorce}
+			</if>
+			<if test="teacherSorce != null and teacherSorce != ''">
+				and teacher_score = #{teacherSorce}
+			</if>
+			<if test="teacherGrade != null and teacherGrade != ''">
+				and teacher_grade = #{teacherGrade}
+			</if>
+			<if test="oneselfGrade != null and oneselfGrade != ''">
+				and oneself_grade = #{oneselfGrade}
+			</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Object">
+		insert into
+		work
+		(studentid,
+		assignmentid,oneself_score,oneself_grade,teacher_score,teacher_grade
+		)
+		values(
+		#{studentid},#{assignmentid},#{oneselfSorce},#{oneselfGrade},#{teacherSorce},#{teacherGrade})
+	</insert>
+	<update id="update" parameterType="Object">
+		update
+		work set
+		oneself_score=
+		#{oneselfSorce},
+		oneself_grade = #{oneselfGrade},
+		teacher_score
+		=
+		#{teacherSorce},teacher_grade = #{teacherGrade}
+		where
+		id =
+		#{id}
+	</update>
+	<select id="selectByModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from work
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectId" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from work where id = #{id}
+	</select>
+	<!-- 系统用户 列表总数 -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from work
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="deleteModel" parameterType="Object">
+		delete from work
+		<include refid="Example_Where_Clause" />
+	</delete>
+
+
+	<select id="selectModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from work
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from work
+		<include refid="Example_Where_Clause" />
+	</select>
+</mapper>                                                                                                 
+                                                                                                          

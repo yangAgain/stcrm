@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+
+	<!-- 别名 -->
+	<typeAliases>
+
+	</typeAliases>
+	<mappers>
+		<mapper resource="ms/UserMapper.xml" />
+		<mapper resource="ms/ClassMapper.xml" />
+		<mapper resource="ms/DicMapper.xml" />
+		<mapper resource="ms/AssessmentMapper.xml" />
+		<mapper resource="ms/AssignmentMapper.xml" />
+		<mapper resource="ms/WorkAttendanceMapper.xml" />
+		<mapper resource="ms/LeaveMapper.xml" />
+		<mapper resource="ms/WorkMapper.xml" />
+		<mapper resource="ms/ProjectMapper.xml" />
+		<mapper resource="ms/CreateQuestionMapper.xml" />
+		<mapper resource="ms/QuestionQaMapper.xml" />
+		<mapper resource="ms/QuestionAnswerMapper.xml" />
+		<mapper resource="ms/PermissionMapper.xml" />
+		<mapper resource="ms/RoleMapper.xml" />
+		<mapper resource="ms/RolePermissionRelMapper.xml" />
+	</mappers>
+</configuration>

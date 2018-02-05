@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>                                                                    
+<!DOCTYPE mapper                                                                                          
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"                                                             
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.crm.mapper.WorkAttendanceMapper">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="st.crm.model.WorkAttendanceModel">
+		<result column="id" property="id" />
+		<result column="userid" property="userid" />
+		<result column="one_check" property="oneCheck" />
+		<result column="two_check" property="twoCheck" />
+		<result column="three_check" property="threeCheck" />
+		<result column="four_check" property="fourCheck" />
+		<result column="five_check" property="fiveCheck" />
+		<result column="six_check" property="sixCheck" />
+		<result column="source" property="source" />
+		<result column="time" property="time" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,userid,one_check,two_check,three_check,four_check,five_check,six_check,source,time
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="userid != null and userid != ''">
+				and userid = #{userid}
+			</if>
+			<if test="oneCheck != null and oneCheck != ''">
+				and one_check = #{oneCheck}
+			</if>
+			<if test="twoCheck != null and twoCheck != ''">
+				and two_check = #{twoCheck}
+			</if>
+			<if test="threeCheck != null and threeCheck != ''">
+				and three_check = #{threeCheck}
+			</if>
+			<if test="fourCheck != null and fourCheck != ''">
+				and four_check = #{fourCheck}
+			</if>
+			<if test="fiveCheck != null and fiveCheck != ''">
+				and five_check = #{fiveCheck}
+			</if>
+			<if test="sixCheck != null and sixCheck != ''">
+				and six_check = #{sixCheck}
+			</if>
+			<if test="source != null and source != ''">
+				and source = #{source}
+			</if>
+			<if test="time != null and time != ''">
+				and time = #{time}
+			</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Object">
+		insert into
+		work_attendance
+		(userid,
+		one_check,two_check,three_check,four_check,five_check,six_check,source,time
+		)
+		values(
+		#{userid},#{oneCheck},#{twoCheck},#{threeCheck},#{fourCheck},#{fiveCheck},#{sixCheck},#{source},#{time})
+	</insert>
+	<update id="update" parameterType="Object">
+		update
+		work_attendance set
+		userid
+		=
+		#{userid},
+		one_check = #{oneCheck},
+		two_check
+		=
+		#{twoCheck},three_check =
+		#{threeCheck},four_check =
+		#{fourCheck},five_check =
+		#{fiveCheck},six_check
+		=
+		#{sixCheck},source=#{source},time=#{time}
+		where
+		id =
+		#{id}
+	</update>
+	<select id="selectByModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from work_attendance
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectId" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from work_attendance where id = #{id}
+	</select>
+	<!-- 系统用户 列表总数 -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from work_attendance
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="deleteModel" parameterType="Object">
+		delete from work_attendance
+		<include refid="Example_Where_Clause" />
+	</delete>
+
+
+	<select id="selectModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from work_attendance
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from work_attendance
+		<include refid="Example_Where_Clause" />
+		order by time
+	</select>
+</mapper>                                                                                                 
+                                                                                                          

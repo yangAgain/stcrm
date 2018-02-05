@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.crm.mapper.AssessmentMapper">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="st.crm.model.AssessmentModel">
+		<result column="id" property="id" />
+		<result column="ranking" property="ranking" />
+		<result column="sorce" property="sorce" />
+		<result column="userid" property="userid" />
+		<result column="username" property="username" />
+		<result column="att_sorce" property="attSorce" />
+		<result column="word_sorce" property="wordSorce" />
+		<result column="daily_sroce" property="dailySroce" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,ranking,sorce,userid,username,att_sorce,word_sorce,daily_sroce
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="ranking != null and ranking != ''">
+				and ranking = #{ranking}
+			</if>
+			<if test="sorce != null and sorce != ''">
+				and sorce = #{sorce}
+			</if>
+			<if test="userid != null and userid != ''">
+				and userid = #{userid}
+			</if>
+			<if test="username != null and username != ''">
+				and username = #{username}
+			</if>
+			<if test="attSorce != null and attSorce != ''">
+				and att_sorce = #{attSorce}
+			</if>
+			<if test="wordSorce != null and wordSorce != ''">
+				and word_sorce = #{wordSorce}
+			</if>
+			<if test="dailySroce != null and dailySroce != ''">
+				and daily_sroce = #{dailySroce}
+			</if>
+		</trim>
+	</sql>
+
+	<select id="selectByModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from assessment
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectId" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from assessment where id = #{id}
+	</select>
+	<!-- 系统用户 列表总数 -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from assessment
+		<include refid="Example_Where_Clause" />
+	</select>
+	<insert id="insert" parameterType="Object">
+		insert into assessment
+		(ranking,
+		sorce,userid,username,att_sorce,word_sorce,daily_sroce
+		)
+		values(
+		#{ranking},#{sorce},#{userid},#{username},#{attSorce},#{wordSorce},#{dailySroce})
+	</insert>
+	<delete id="deleteModel" parameterType="Object">
+		delete from assessment
+		<include refid="Example_Where_Clause" />
+	</delete>
+	<update id="update" parameterType="Object">
+		update assessment set
+		ranking =
+		#{ranking}, sorce = #{sorce}
+		, userid = #{userid},username =
+		#{username}, att_sorce
+		= #{attSorce} ,word_sorce =
+		#{wordSorce},daily_sroce = #{dailySroce}
+		where id =
+		#{id}
+	</update>
+
+	<select id="selectModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from assessment
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from assessment
+		<include refid="Example_Where_Clause" />
+	</select>
+</mapper>   

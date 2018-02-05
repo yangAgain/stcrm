@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>                                                                    
+<!DOCTYPE mapper                                                                                          
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"                                                             
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.crm.mapper.QuestionAnswerMapper">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="st.crm.model.QuestionAnswerModel">
+		<result column="id" property="id" />
+		<result column="answers" property="answers" />
+		<result column="studentid" property="studentid" />
+		<result column="creat_questionid" property="creatQuestionid" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,answers,studentid,creat_questionid
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="studentid != null and studentid != ''">
+				and studentid = #{studentid}
+			</if>
+			<if test="creatQuestionid != null and creatQuestionid != ''">
+				and creat_questionid = #{creatQuestionid}
+			</if>
+			<if test="answers != null and answers != ''">
+				and answers = #{answers}
+			</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Object">
+		insert into
+		question_answer
+		(answers,
+		creat_questionid,studentid
+		)
+		values(
+		#{answers},#{creatQuestionid},#{studentid})
+	</insert>
+	<update id="update" parameterType="Object">
+		update
+		question_answer set
+		answers =
+		#{answers}
+		where
+		id =
+		#{id}
+	</update>
+	<select id="selectByModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from question_answer
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectId" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from question_answer where id = #{id}
+	</select>
+	<!-- 系统用户 列表总数 -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from question_answer
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="deleteModel" parameterType="Object">
+		delete from question_answer
+		<include refid="Example_Where_Clause" />
+	</delete>
+
+
+	<select id="selectModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from question_answer
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from question_answer
+		<include refid="Example_Where_Clause" />
+	</select>
+</mapper>                                                                                                 
+                                                                                                          

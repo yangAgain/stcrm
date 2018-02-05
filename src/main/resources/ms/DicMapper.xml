@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>                                                                    
+<!DOCTYPE mapper                                                                                          
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"                                                             
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.crm.mapper.DicMapper">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="st.crm.model.DicModel">
+		<result column="id" property="id" />
+		<result column="code" property="code" />
+		<result column="name" property="name" />
+		<result column="pcode" property="pcode" />
+		<result column="descr" property="descr" />
+		<result column="type" property="type" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,code,name,pcode,descr,type
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="code != null and code != ''">
+				and code = #{code}
+			</if>
+			<if test="name != null and name != ''">
+				and name = #{name}
+			</if>
+			<if test="pcode != null and pcode != ''">
+				and pcode = #{pcode}
+			</if>
+			<if test="descr != null and descr != ''">
+				and descr = #{descr}
+			</if>
+			<if test="type != null and type != ''">
+				and type = #{type}
+			</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Object">
+		insert into
+		dic
+		(code,
+		name,pcode,descr,type
+		)
+		values(
+		#{code},#{name},#{pcode},#{descr},#{type})
+	</insert>
+	<update id="update" parameterType="Object">
+		update
+		dic set
+		code =
+		#{code},
+		name = #{name},
+		pcode
+		= #{pcode}, descr = #{descr}, type = #{type}
+		where
+		id =
+		#{id}
+	</update>
+	<select id="selectByModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from dic
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectId" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from dic where id = #{id}
+	</select>
+	<!-- 系统用户 列表总数 -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from dic
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="deleteModel" parameterType="Object">
+		delete from dic
+		<include refid="Example_Where_Clause" />
+	</delete>
+
+
+	<select id="selectModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from dic
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from dic
+		<include refid="Example_Where_Clause" />
+	</select>
+</mapper>                                                                                                 
+                                                                                                          

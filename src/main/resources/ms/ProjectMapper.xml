@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>                                                                    
+<!DOCTYPE mapper                                                                                          
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"                                                             
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.crm.mapper.ProjectMapper">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="st.crm.model.ProjectModel">
+		<result column="id" property="id" />
+		<result column="project_name" property="projectName" />
+		<result column="all_score" property="allSorce" />
+		<result column="student_score" property="studentSorce" />
+		<result column="teacher_score" property="teacherSorce" />
+		<result column="grade" property="grade" />
+		<result column="space" property="space" />
+		<result column="studentid" property="studentid" />
+		<result column="stuName" property="stuName" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,project_name,all_score,student_score,teacher_score,grade,space,studentid
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="projectName != null and projectName != ''">
+				and project_name = #{projectName}
+			</if>
+			<if test="allSorce != null and allSorce != ''">
+				and all_score = #{allSorce}
+			</if>
+			<if test="studentSorce != null and studentSorce != ''">
+				and student_score = #{studentSorce}
+			</if>
+			<if test="teacherSorce != null and teacherSorce != ''">
+				and teacher_score = #{teacherSorce}
+			</if>
+			<if test="grade != null and grade != ''">
+				and grade = #{grade}
+			</if>
+			<if test="space != null and space != ''">
+				and space = #{space}
+			</if>
+			<if test="studentid != null and studentid != ''">
+				and studentid = #{studentid}
+			</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Object">
+		insert into
+		project
+		(project_name,
+		all_score,student_score,teacher_score,grade,space,studentid
+		)
+		values(
+		#{projectName},#{allSorce},#{studentSorce},#{teacherSorce},#{grade},#{space},#{studentid})
+	</insert>
+	<update id="update" parameterType="Object">
+		update
+		project set
+		project_name
+		=
+		#{projectName},
+		all_score = #{allSorce},
+		student_score
+		=
+		#{studentSorce},teacher_score = #{teacherSorce},
+		grade
+		=
+		#{grade}
+		where
+		id
+		=
+		#{id}
+	</update>
+	<select id="selectByModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from project
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectId" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from project where id = #{id}
+	</select>
+	<!-- 系统用户 列表总数 -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from project
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="deleteModel" parameterType="Object">
+		delete from project
+		<include refid="Example_Where_Clause" />
+	</delete>
+
+
+	<select id="selectModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from project
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		,(select truename from user u where u.id=p.studentid) stuName
+		from project p
+		<include refid="Example_Where_Clause" />
+	</select>
+</mapper>                                                                                                 
+                                                                                                          

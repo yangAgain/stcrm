@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>                                                                    
+<!DOCTYPE mapper                                                                                          
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"                                                             
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.crm.mapper.RolePermissionRelMapper">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="st.crm.model.RolePermissionRelModel">
+		<result column="id" property="id" />
+		<result column="roleid" property="roleid" />
+		<result column="permissionid" property="permissionid" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,roleid,permissionid
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="roleid != null and roleid != ''">
+				and roleid = #{roleid}
+			</if>
+			<if test="permissionid != null and permissionid != ''">
+				and permissionid = #{permissionid}
+			</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Object">
+		insert into
+		role_permission_rel
+		(roleid,
+		permissionid
+		)
+		values(
+		#{roleid},#{permissionid})
+	</insert>
+	<update id="update" parameterType="Object">
+		update
+		role_permission_rel set
+		roleid =
+		#{roleid}, permissionid = #{permissionid}
+		where id =
+		#{id}
+	</update>
+	<select id="selectByModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from role_permission_rel
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectId" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from role_permission_rel where id = #{id}
+	</select>
+	<!-- 系统用户 列表总数 -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from role_permission_rel
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="deleteModel" parameterType="Object">
+		delete from role_permission_rel
+		<include refid="Example_Where_Clause" />
+	</delete>
+	<select id="selectModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from role_permission_rel
+		<include refid="Example_Where_Clause" />
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from role_permission_rel
+		<include refid="Example_Where_Clause" />
+	</select>
+</mapper>                                                                                                 
+                                                                                                          

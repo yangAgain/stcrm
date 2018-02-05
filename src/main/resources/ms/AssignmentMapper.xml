@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="st.crm.mapper.AssignmentMapper">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="st.crm.model.AssignmentModel">
+		<result column="id" property="id" />
+		<result column="teacherid" property="teacherid" />
+		<result column="question" property="question" />
+		<result column="grade_standard" property="gradeStandard" />
+		<result column="type" property="type" />
+		<result column="time" property="time" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,teacherid,question,grade_standard,type,time
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="teacherid != null and teacherid != ''">
+				and teacherid = #{teacherid}
+			</if>
+			<if test="question != null and question != ''">
+				and question = #{question}
+			</if>
+			<if test="gradeStandard != null and gradeStandard != ''">
+				and grade_standard = #{gradeStandard}
+			</if>
+			<if test="type != null and type != ''">
+				and type = #{type}
+			</if>
+			<if test="time != null and time != ''">
+				and time = #{time}
+			</if>
+		</trim>
+	</sql>
+	<insert id="insert" parameterType="Object">
+		insert into assignment
+		(teacherid,
+		question,grade_standard,type,time
+		)
+		values(
+		#{teacherid},#{question},#{gradeStandard},#{type},#{time})
+	</insert>
+	<update id="update" parameterType="Object">
+		update assignment set
+		question = #{question}
+		, grade_standard
+		=#{gradeStandard},type =#{type}
+		where id
+		=
+		#{id}
+	</update>
+	<select id="selectByModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from assignment
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectId" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from assignment where id = #{id}
+	</select>
+	<!-- 系统用户 列表总数 -->
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from assignment
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<delete id="deleteModel" parameterType="Object">
+		delete from assignment
+		<include refid="Example_Where_Clause" />
+	</delete>
+
+
+	<select id="selectModel" resultMap="BaseResultMap"
+		parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from assignment
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from assignment
+		<include refid="Example_Where_Clause" />
+		order by time
+	</select>
+</mapper>   
