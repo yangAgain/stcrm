@@ -146,6 +146,7 @@ public class QuestionController {
 			map.put("truename", u.getTruename());
 			map.put("answer",
 					u.getQuestionAnswer().getAnswers().substring(1, u.getQuestionAnswer().getAnswers().length()));
+			map.put("classname", u.getClassname());
 			l2.add(map);
 		}
 		System.out.println(JSONUtil.toJSONString(l2));

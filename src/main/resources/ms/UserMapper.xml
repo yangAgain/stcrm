@@ -80,7 +80,8 @@
 		parameterType="Object">
 		select
 		u.id,username,password,truename,roleid,classid
-		,q.id q_id,studentid,creat_questionid ,answers
+		,q.id q_id,studentid,creat_questionid ,answers,(select classname from
+		class c where c.id=u.classid )classname
 		from user
 		u left join
 		question_answer q on q.studentid=u.id where

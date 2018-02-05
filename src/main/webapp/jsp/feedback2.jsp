@@ -29,9 +29,6 @@ a {
 }
 </style>
 <script type="text/javascript">
-	var ff = function(value, row, index) {
-		return "<a onclick='lookit(" + row.id + ")'>查看详情</a>";
-	}
 	function show2(data) {
 		var s = "";
 		for (var i = 0; i < data.length; i++) {
@@ -78,8 +75,9 @@ a {
 </script>
 </head>
 <body>
+	<h2 style="text-align: center;">问卷反馈详情</h2>
 	<p>
-		<a href="javascript:void(0);" id="lol">></a> 当前问卷名称：${creatQuestion.questionName}
+		<a href="javascript:void(0);" id="lol">></a> 当前问卷名称：${creatQuestion.questionName}&nbsp;&nbsp;&nbsp;<b id="bbb"></b>
 	</p>
 	<div id="wj" style="font-size: 5px;" hidden="true"></div>
 	<p>学生回答情况</p>
@@ -91,11 +89,13 @@ a {
 				striped:true,
 				checkOnSelect:false,
 				fitColumns:true,
+				rownumbers:true,
 				toolbar:'#tb'
 				">
 		<thead>
 			<tr>
-				<th data-options="field:'truename',width:20,align:'center'">姓名</th>
+				<th data-options="field:'truename',width:10,align:'center'">姓名</th>
+				<th data-options="field:'classname',width:15,align:'center'">所在班级</th>
 				<th data-options="field:'answer',width:20,align:'center'">学生的答案选项</th>
 			</tr>
 		</thead>
